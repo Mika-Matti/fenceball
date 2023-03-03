@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class FenceSpawnerScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class FenceSpawnerScript : MonoBehaviour
     public GameObject tile;
     public TMP_Text directionIndicator;
     public Vector2 spawnPoint;
+    private GameObject newFence;
     private bool expandHorizontally;
     private int counter;
     private Quaternion quaternion;
@@ -25,13 +27,13 @@ public class FenceSpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && NoActiveFences())
         {
             tile = GameObject.FindWithTag("ActiveTile");
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 objectPos = GetNearestEdge(tile, mousePos);
             
-            var newFence = Instantiate(fence, objectPos, quaternion);
+            newFence = Instantiate(fence, objectPos, quaternion);
             var children = newFence.GetComponentsInChildren<FenceChildScript>();
             foreach (FenceChildScript child in children)
             {
@@ -53,6 +55,22 @@ public class FenceSpawnerScript : MonoBehaviour
                 directionIndicator.text = "\u2194";
             }
         } 
+    }
+
+    private bool NoActiveFences()
+    {
+        if (newFence != null)
+        {
+            var children = newFence.GetComponentsInChildren<FenceChildScript>();
+            foreach (FenceChildScript child in children)
+            {
+                if (child.expanding)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private Vector2 GetNearestEdge(GameObject tile, Vector3 mousePos)
