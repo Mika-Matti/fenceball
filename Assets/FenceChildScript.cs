@@ -60,7 +60,16 @@ public class FenceChildScript : MonoBehaviour
             fenceChild.GetComponent<SpriteRenderer>().color = inactive;
             fenceChild.transform.localScale = new Vector2(Mathf.RoundToInt(fenceChild.transform.localScale.x), fenceChild.transform.localScale.y);
 
+            var gameState = GameObject.Find("GameState").GetComponent<GameStateScript>();
+            gameState.UpdateFencedArea(GetFenceArea());
+            
         }
+    }
+
+    private float GetFenceArea()
+    {
+        Vector2 fenceDims = fenceChild.GetComponent<SpriteRenderer>().bounds.size;
+        return fenceDims.x * fenceDims.y;
     }
 
     private void AdjustSize()

@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 
 public class FenceSpawnerScript : MonoBehaviour
 {
@@ -39,7 +37,6 @@ public class FenceSpawnerScript : MonoBehaviour
             {
                 child.expandHorizontally = expandHorizontally;
                 child.id = counter;
-                
             }
             counter++;
 
