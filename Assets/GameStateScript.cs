@@ -10,9 +10,9 @@ public class GameStateScript : MonoBehaviour
     void Start()
     {
         var ball1 = Instantiate(ball, new Vector2(0, 0), new Quaternion(0, 0, 0, 0));
-        ball1.GetComponent<BallScript>().setVelocity(5, 5);
+        ball1.GetComponent<BallScript>().SetVelocity(5, 5);
         var ball2 = Instantiate(ball, new Vector2(2, 4), new Quaternion(0, 0, 0, 0));
-        ball2.GetComponent<BallScript>().setVelocity(5, 5);
+        ball2.GetComponent<BallScript>().SetVelocity(5, 5);
     }
 
     // Update is called once per frame

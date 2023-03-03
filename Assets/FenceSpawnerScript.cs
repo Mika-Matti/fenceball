@@ -29,7 +29,7 @@ public class FenceSpawnerScript : MonoBehaviour
         {
             tile = GameObject.FindWithTag("ActiveTile");
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 objectPos = getNearestEdge(tile, mousePos);
+            Vector2 objectPos = GetNearestEdge(tile, mousePos);
             
             var newFence = Instantiate(fence, objectPos, quaternion);
             var children = newFence.GetComponentsInChildren<FenceChildScript>();
@@ -55,7 +55,7 @@ public class FenceSpawnerScript : MonoBehaviour
         } 
     }
 
-    private Vector2 getNearestEdge(GameObject tile, Vector3 mousePos)
+    private Vector2 GetNearestEdge(GameObject tile, Vector3 mousePos)
     {
         Vector2 closestEdge = tile.transform.position;
         float xLeft = tile.transform.position.x;

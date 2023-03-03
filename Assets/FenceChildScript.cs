@@ -20,7 +20,7 @@ public class FenceChildScript : MonoBehaviour
         expandSpeed = 30;
         expanding = true;
         fenceChild.GetComponent<SpriteRenderer>().color = active;
-        adjustSize();
+        AdjustSize();
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class FenceChildScript : MonoBehaviour
             Vector3 scale = fenceChild.transform.localScale;
             scale.x += expandSpeed / 10 * Time.deltaTime;
             fenceChild.transform.localScale = scale;
-            adjustSize();
+            AdjustSize();
         }
     }
 
@@ -63,7 +63,7 @@ public class FenceChildScript : MonoBehaviour
         }
     }
 
-    private void adjustSize()
+    private void AdjustSize()
     {
         //Take the sizes of object and it's collider
         float fenceWidth = fenceChild.GetComponent<SpriteRenderer>().bounds.size.x;

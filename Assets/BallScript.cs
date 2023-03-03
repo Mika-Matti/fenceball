@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BallScript : MonoBehaviour
@@ -48,11 +46,11 @@ public class BallScript : MonoBehaviour
                     xVel = xVel * -1;
                 }
             }
-            setVelocity(xVel, yVel);
+            SetVelocity(xVel, yVel);
         } 
     }
 
-    public void setVelocity(float xVelocity, float yVelocity)
+    public void SetVelocity(float xVelocity, float yVelocity)
     {
         rigidBody.velocity = new Vector2(xVelocity, yVelocity);
     }
