@@ -51,9 +51,12 @@ public class FenceChildScript : MonoBehaviour
             return;
         }
 
-
         var tag = other.gameObject.tag;
-        if (tag == "Obstacle" && expanding && fenceChild.transform.localScale.x >= 2)
+        if (tag == "Obstacle" && expanding && fenceChild.transform.localScale.x < 2)
+        {
+            Destroy(fenceChild);
+        }
+        else if (tag == "Obstacle" && expanding && fenceChild.transform.localScale.x >= 2)
         {
             expanding = false;
             fenceChild.tag = tag;
@@ -61,9 +64,8 @@ public class FenceChildScript : MonoBehaviour
             fenceChild.transform.localScale = new Vector2(Mathf.RoundToInt(fenceChild.transform.localScale.x), fenceChild.transform.localScale.y);
 
             var gameState = GameObject.Find("GameState").GetComponent<GameStateScript>();
-            gameState.UpdateFencedArea(GetFenceArea());
-            
-        }
+            gameState.UpdateFencedArea(GetFenceArea());   
+        } 
     }
 
     private float GetFenceArea()
